@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- boilerplate -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- seo -->
+    <!-- meta name="description"
+          description="Page description goes here" -->
+    <!-- meta name="robots"
+          content="noindex, nofollow" -- no robots --
+          content="index, follow"     --  robots  -->
+
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+
+    <title x-data x-text="$store.globals.companyName"></title>
+
+    <!-- css -->
+    <!--link rel="stylesheet"
+          type="text/css"
+          href="/css/bulma@0.9.3.min.css"-->
+    <link rel="stylesheet"
+          type="text/css"
+          href="/css/bulma.css">
+    <link rel="stylesheet"
+          type="text/css"
+          href="/css/bulma-tweaks.css">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <!-- link rel="stylesheet" href="/css/project.css" -->
+
+    <!-- javascript -->
+    <script src="js/helpers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.2.2/dist/cdn.js"
+            defer></script>
+
+    <script type="module">
+      // import { nWebComponents } from '/components/web/components.js';
+      import { nCustomElements } from '/components/custom/elements.js';
+      // window.nWebComponents = nWebComponents;
+      window.nCustomElements = nCustomElements;
+    </script>
+
+
+    <!-- analytics -->
+    <!-- script src="https://your.domain/analytics.js" defer></script -->
+
+    <style>
+      /* hero */
+      #hero-text { text-shadow: 0 0 4px black;}
+
+      /* content */
+      #htmx-content-container { transition: opacity 0.25s; }
+    </style>
+
+  </head>
+
+  <body>
+    <script type="module">
+      (() => { // load global components
+        // const webComponents = ['hero'];
+        // helpers.importWebComponents(webComponents);
+        const customElements = ['button-cta', 'hero'];
+        helpers.customElementsImport(customElements);
+      })();
+    </script>
+
+    <noscript>
+      <div class="my-4 is-size-5 has-text-danger has-text-centered">
+        This page requires Javascript to function correctly.
+      </div>
+    </noscript>
+
+    <!-- Internet Explorer 11 deprecation notice -->
+    <div id="ie11-notice"
+         class="py-4 is-size-5 is-hidden
+                has-text-centered has-text-light has-background-danger">
+      Your web browser is insecure.
+      Please upgrade to a modern web browser such as Chrome or Firefox.
+    </div>
+
+    <script>
+      let isIE11 = !(window.ActiveXObject) && "ActiveXObject" in window;
+      if (isIE11) {
+        document.querySelector('#ie11-notice').classList.remove('is-hidden');
+      }
+    </script>
+
+    <script src="components/index.js"></script>
+    <div id="page-container"
+         x-data="indexComponent()"
+         x-show="indexComponentShow"
+         @page-container-show.window="() => { indexComponentShow = true; }"
+         x-cloak>
+
+      <!-- navbar -->
+      <script src="/components/navbar.js"></script>
+      <div id="htmx-navbar"
+           hx-get="/components/templates/navbar.html"
+           hx-trigger="load"></div>
+
+      <!-- hero -->
+      <n-hero img-src="/img/hero.jpg">
+        <div slot="text">
+          <h2 id="hero-text"
+              class="mt-4 is-size-4 has-text-light"
+              x-text="$store.globals.companySlogan"></h2>
+          <div id="hero-cta" class="mt-8 mx-auto w-max-max-content">
+            <n-button-cta img-src="/img/telephone-fill-white.svg"
+                          :href="`tel:${$store.globals.phoneUnformatted}`"
+                          :text="$store.globals.phoneFormatted">
+            </n-button-cta>
+          </div>
+        </div>
+      </n-hero>
+
+      <!-- content -->
+      <main x-ref="htmxContentContainer"
+            id="htmx-content-container"
+            class="mb-6 is-flex-grow-1"></main>
+
+      <!-- footer -->
+      <template x-if="hasFooter">
+        <div id="htmx-footer"
+             hx-get="/components/templates/footer.html"
+             hx-trigger="load"></div>
+      </template>
+
+    </div>
+
+    <!-- alpine -->
+    <script src="stores/globals.js"></script>
+    <script src="stores/router.js"></script>
+
+    <!-- htmx -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"
+            integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+            crossorigin="anonymous"></script>
+    <!--script src="/js/htmx@1.5.0.js"></script-->
+    <script src="js/htmx-helpers.js"></script>
+
+    <script>
+      window.addEventListener('load', () => {
+        window.dispatchEvent(new CustomEvent('page-container-show', {}));
+      });
+    </script>
+
+
+	</body>
+</html>

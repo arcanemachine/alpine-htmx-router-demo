@@ -1,0 +1,58 @@
+<!-- uncomment these lines if processing server-side messages from Django
+{% load static %}
+<script type="text/javascript"
+        src="{% static 'js/status-message.js' %}"></script>
+<script>
+  // display messages from server as status messages
+  {% if messages %}
+    {% for message in messages %}
+      setTimeout(() => {
+        hStatusMessageDisplay("{{ message|safe }}", {{ message.level|safe }});
+      }, 100 + {{ forloop.counter0|safe }} * defaultMessageTimeout);
+    {% endfor %}
+  {% endif %}
+</script>
+
+----------------------------------------------------------------------------->
+
+<div class="status-message-container">
+  <button id="status-message"
+          data-cy="status-message"
+          x-ref="statusMessageEl"
+          class="status-message"
+          x-data="statusMessageComponent()"
+          x-show="show"
+          x-transition.opacity.duration.500ms
+          x-text="statusMessageText"
+          @click="handleStatusMessageClick('login-modal-enable')"
+          @status-message-display.window="statusMessageDisplay($event.detail)"
+          x-cloak>
+  </button>
+</div>
+
+<style>
+
+.status-message {
+  background-color: #3298DC;
+  position: fixed;
+  max-width: 17rem; /* max number for proper display on iPhone 7 */
+  top: 0.25rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2),
+              0 0px 0 1px rgba(10, 10, 10, 0.05);
+
+  z-index: 100;
+}
+
+</style>

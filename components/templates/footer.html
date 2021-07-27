@@ -1,0 +1,115 @@
+<footer id="page-footer"
+        class="py-2 has-background-primary
+               has-text-light has-text-centered">
+  <ul class="my-2 list-unstyled text-small">
+
+    <!-- action icons -->
+    <li id="action-icon-container"
+        class="my-4">
+
+      <template x-if="$store.globals.phoneUnformatted">
+        <a :href="$store.globals.contactLinkGet('phone')"
+           class="mr-2"
+           target="_blank">
+          <img src="img/telephone-fill.svg"
+               class="footer-action-icon"
+               alt="Telephone Icon"
+               title="Call Us" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlFacebook">
+        <a :href="$store.globals.urlFacebook"
+           class="mr-2"
+           target="_blank">
+          <img src="img/facebook.svg"
+               class="footer-action-icon"
+               alt="Facebook Icon"
+               title="Check us out on Facebook!" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlInstagram">
+        <a :href="$store.globals.urlInstagram"
+           class="mr-2"
+           target="_blank">
+          <img src="img/instagram.svg"
+               class="footer-action-icon"
+               alt="Instagram Icon"
+               title="Check us out on Instagram!" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlLinkedIn">
+        <a :href="$store.globals.urlLinkedIn"
+           class="mr-2"
+           target="_blank">
+          <img src="img/linkedin.svg"
+               class="footer-action-icon"
+               alt="LinkedIn Icon"
+               title="Check us out on LinkedIn!" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlPinterest">
+        <a :href="$store.globals.urlPinterest"
+           class="mr-2"
+           target="_blank">
+          <img src="img/pinterest.svg"
+               class="footer-action-icon"
+               alt="Pinterest Icon"
+               title="Check us out on Pinterest!" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlTwitter">
+        <a :href="$store.globals.urlTwitter"
+           class="mr-2"
+           target="_blank">
+          <img src="img/twitter.svg"
+               class="footer-action-icon"
+               alt="Twitter Icon"
+               title="Check us out on Twitter!" />
+        </a>
+      </template>
+
+      <template x-if="$store.globals.urlYouTube">
+        <a :href="$store.globals.urlYouTube"
+           class="mr-2"
+           target="_blank">
+          <img src="img/youtube.svg"
+               class="footer-action-icon"
+               alt="YouTube Icon"
+               title="Check us out on YouTube!" />
+        </a>
+      </template>
+
+    </li>
+
+    <!-- contact info -->
+    <li class="is-size-5"
+        x-text="$store.globals.companyName"></li>
+    <li class="mt-1" x-text="$store.globals.address1"></li>
+    <li x-text="$store.globals.address2"></li>
+    <li>
+      <span x-text="$store.globals.city"></span>,
+      <span x-text="$store.globals.state"></span>,
+      <span x-text="$store.globals.country"></span>
+    </li>
+    <li>
+      <span x-text="$store.globals.zipCode"></span>
+    </li>
+    <li class="mt-2 is-size-4">
+      <a :href="$store.globals.contactLinkGet('phone')"
+         x-text="$store.globals.phoneFormatted"></a>
+    </li>
+  </ul>
+
+</footer>
+
+<style>
+  .footer-action-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+</style>

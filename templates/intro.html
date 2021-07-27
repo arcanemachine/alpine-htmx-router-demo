@@ -1,0 +1,212 @@
+<script>
+  (() => {
+    const customElements = ['button-cta-wrapped', 'card'];
+    helpers.customElementsImport(customElements);
+  })();
+</script>
+
+<div class="container">
+  <div class="pt-8 section">
+
+    <h2 class="mb-8 title has-text-centered"
+        x-text="$store.globals.companyName"></h2>
+    <h2 class="mb-6 subtitle has-text-centered">
+      Your Trusted Electrician Since 1972
+    </h2>
+
+    <div class="mt-6">
+      <p>
+        At <span x-text="$store.globals.companyName"></span>, our team of
+        top-notch electricians provides a full suite of electrical services
+        to our customers. Servicing the Three Lakes county and surrounding
+        areas, we have worked hard to become a household name with our
+        unparalleled customer service, quality workmanship, and attention to
+        detail.
+      </p>
+      <p>
+        Since 1972, we have delivered quality electrical solutions for
+        hundreds of homes and businesses. We are a family-run business,
+        and we have grown with the community throughout our history. We want
+        our customers to know that they are getting the best service money can
+        offer, because you are one of us.
+      </p>
+      <p>
+        No matter what you need,
+        <span x-text="$store.globals.companyName"></span>
+        has what it takes to get the job done.
+      </p>
+    </div>
+
+    <n-button-cta-wrapped img-src="/img/telephone-fill-white.svg"
+                          :href="`tel:${$store.globals.phoneUnformatted}`"
+                          :text="$store.globals.phoneFormatted">
+    </n-button-cta-wrapped>
+
+    <h2 class="mt-12 title has-text-centered is-underlined">
+      What We Do
+    </h2>
+
+    <div class="mt-8">
+      <p>At <span x-text="$store.globals.companyName"></span>, there is no job too big, or too small!</p>
+      <p>Whether you are...</p>
+      <div class="content">
+        <ul>
+          <li>putting in a new circuit in your home,</li>
+          <li>building a new home,</li>
+          <li>renovating your existing home,</li>
+          <li>or building out a large-scale commercial or industrial project,</li>
+        </ul>
+      </div>
+      <p>
+        <span x-text="$store.globals.companyName"></span>
+        is here to help you get your project from start to finish!
+      </p>
+
+    </div>
+
+
+    <div class="mt-6 columns is-multiline">
+      <div class="column is-half-desktop">
+        <n-card title="Residential"
+                img-src="/img/intro-residential.jpg">
+          <div slot="card-text" class="has-text-centered">
+            <div>New construction, renovations, retrofits, and more!</div>
+          </div>
+        </n-card>
+      </div>
+
+      <div class="column is-half-desktop">
+        <n-card title="Commercial"
+                img-src="/img/intro-commercial.jpg">
+          <div slot="card-text" class="has-text-centered">
+            <div>Service calls, remodels, industrial... We do it all!</div>
+          </div>
+        </n-card>
+      </div>
+    </div>
+
+    <n-button-cta-wrapped img-src="/img/telephone-fill-white.svg"
+                          :href="`tel:${$store.globals.phoneUnformatted}`"
+                          :text="$store.globals.phoneFormatted">
+    </n-button-cta-wrapped>
+
+    <div class="mt-12 title has-text-centered is-underlined">
+      Testimonials
+    </div>
+
+    <h2 class="mt-8 is-size-5 has-text-centered">
+      What our customers are saying...
+    </h2>
+
+    <div class="mt-5 columns is-multiline">
+      <div class="mx-auto column is-one-third-desktop">
+        <n-card img-src="/img/happy-man1.jpg">
+          <div slot="card-text"
+               class="has-text-centered card-testimonial-content">
+            <div>
+              "I gave <span x-text="$store.globals.companyName"></span> a 
+              call when I was building an addition for my home.
+            </div>
+            <div class="mt-2">
+              They were quick, professional, and best of all, affordable!
+            </div>
+            <div class="mt-2">
+              I always recommend
+              <span x-text="$store.globals.companyName"></span>
+              to anyone who needs a good electrician!"
+            </div>
+            <div class="is-flex-grow-1"></div> <!-- fill empty space -->
+            <div class="mt-4 subtitle has-text-right">
+              <em>- Brett</em>
+            </div>
+          </div>
+        </n-card>
+      </div>
+      <div class="mx-auto column is-one-third-desktop">
+        <n-card img-src="/img/happy-woman1.jpg">
+          <div slot="card-text"
+               class="has-text-centered card-testimonial-content">
+            <div>
+              "I was remodeling my kitchen, and a friend told me they had
+              good results with
+              <span x-text="$store.globals.companyName"></span>, so I called
+              them when I was putting in the new lighting.
+            </div>
+            <div class="mt-2">
+              These guys are the best!!!"
+            </div>
+            <div class="is-flex-grow-1"></div> <!-- fill empty space -->
+            <div class="mt-4 subtitle has-text-right">
+              <em>- Gillian</em>
+            </div>
+          </div>
+        </n-card>
+      </div>
+      <div class="mx-auto column is-one-third-desktop">
+        <n-card img-src="/img/happy-couple1.jpg">
+          <div slot="card-text"
+               class="has-text-centered card-testimonial-content">
+            <div>
+              "Our business has been growing like crazy,
+              so we bought the building next door.
+            </div>
+            <div class="mt-2">
+              <span x-text="$store.globals.companyName"></span> helped us
+              turn two small buildings into one big one!
+            </div>
+            <div class="mt-2">
+              We can't recommend them strongly enough.
+            </div>
+            <div class="is-flex-grow-1"></div> <!-- fill empty space -->
+            <div class="mt-4 subtitle has-text-right">
+              <em>- Jennifer and Mike</em>
+            </div>
+          </div>
+        </n-card>
+      </div>
+    </div>
+
+    <n-button-cta-wrapped img-src="/img/telephone-fill-white.svg"
+                          :href="`tel:${$store.globals.phoneUnformatted}`"
+                          :text="$store.globals.phoneFormatted">
+    </n-button-cta-wrapped>
+
+    <script>
+      // make all card descriptions the same size as the largest one
+      function resizeCards(groupSelector=undefined) {
+        // if no group selector is given, the query will match and resize
+        // all elements on the page that contain the '.card-content' selector
+        let elements =
+          document.querySelectorAll(groupSelector, '.card-content');
+
+        // find tallest element
+        let tallestEl = 0;
+        elements.forEach((el) => {
+          if (el.scrollHeight > tallestEl) {
+            tallestEl = el.scrollHeight;
+          }
+        });
+
+        // set all element heights to value of tallest elements
+        elements.forEach((el) => {
+          el.style.height = `${tallestEl}px`;
+        });
+      }
+
+      window
+        .addEventListener('load', resizeCards('.card-testimonial-content'));
+      window
+        .addEventListener('resize', resizeCards('.card-testimonial-content'));
+    </script>
+
+
+  </div>
+</div>
+
+<style>
+  .card-testimonial-content {
+    display: flex;
+    flex-direction: column;
+
+  }
+</style>

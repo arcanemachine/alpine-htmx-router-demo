@@ -1,0 +1,67 @@
+<template id="hero">
+  <div id="hero-img-container" class="hero-container">
+    <img id="hero-img" src="/img/hero.jpg" />
+  </div>
+  <div id="hero-text-container" class="hero-container">
+    <h1 class="title has-text-primary text-center"></h1>
+  </div>
+</template>
+
+<script>
+  class Hero extends HTMLElement {
+    constructor() {
+      super();
+      /*called when the class is 
+      instantiated
+      */
+    }
+
+    connectedCallback() {
+     /*called when the element is 
+      connected to the page.
+      This can be called multiple 
+      times during the element's
+      lifecycle.
+      for example when using drag&drop
+      to move elements around
+     */
+      const myTemplate = document.querySelector('#hero');
+      const clone = document.importNode(myTemplate.content, true);
+      this.appendChild(clone);
+    }
+
+    disconnectedCallback() {
+     /*called when the element
+       is disconnected from the page
+     */
+    }
+
+  }
+
+  customElements.define('n-hero', Hero);
+
+</script>
+
+<style>
+
+.hero-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 20rem;
+}
+
+#hero-img-container {
+  align-items: flex-end;
+}
+
+#hero-img {
+  min-width: 100vw;
+}
+
+#hero-text-container {
+  align-items: center;
+}
+
+</style>
+

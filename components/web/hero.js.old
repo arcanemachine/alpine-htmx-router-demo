@@ -1,0 +1,139 @@
+let htmlTemplate = `
+  <div id="hero-container">
+    <div id="hero-img-container" class="hero-item-container">
+      <img id="hero-img" />
+    </div>
+    <div class="hero-item-container">
+      <h2 id="hero-text" class="is-size-4"></h2>
+      <div id="hero-cta pb-1" class="mt-6">
+        <a id="hero-cta-button" class="button is-info" tabindex="0" href="#">
+          <span id="hero-cta-icon-container"
+                class="pt-1 icon">
+            <img id="hero-cta-icon" fill="white" />
+          </span>
+          <span id="hero-cta-text"
+                class="is-size-5"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @import '/css/bulma.min.css';
+    @import '/css/bulma-custom.css';
+    @import '/css/base.css';
+
+    #hero-container {
+      height: 15rem;
+      width: 100vw;
+    }
+
+    .hero-item-container {
+      position: absolute;
+      height: 15rem;
+      width: 100vw;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #hero-img {
+      height: 15rem;
+      width: 100vw;
+      object-fit: cover;
+      z-index: -100;
+    }
+
+    #hero-text {
+      text-shadow: 0 0 4px black;
+    }
+
+    #hero-cta {
+      box-shadow: 0 0 1.5rem white;
+      border-radius: 0.5rem;
+    }
+
+    .button:focus { opacity: 1; }
+    .button:hover { opacity: 1; }
+
+    .vignette {
+      box-shadow: inset 0px 0px 5rem black;
+    }
+
+  </style>
+`;
+
+export function hero() {
+  const template = document.createElement('template');
+  template.innerHTML = htmlTemplate;
+
+  class Hero extends HTMLElement {
+    constructor() {
+      super();
+
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+      this.heroImgContainer =
+        this.shadowRoot.querySelector('#hero-img-container');
+      this.heroImg = this.shadowRoot.querySelector('#hero-img');
+      this.heroText = this.shadowRoot.querySelector('#hero-text');
+      this.heroCta = this.shadowRoot.querySelector('#hero-cta');
+      this.heroCtaButton = this.shadowRoot.querySelector('#hero-cta-button');
+      this.heroCtaIconContainer =
+        this.shadowRoot.querySelector('#hero-cta-icon-container');
+      this.heroCtaIcon = this.shadowRoot.querySelector('#hero-cta-icon');
+      this.heroCtaText = this.shadowRoot.querySelector('#hero-cta-text');
+    }
+
+    connectedCallback() {
+      if (!this.hasAttribute('img-src')) {
+        this.setAttribute('img-src', '/img/hero-default.jpg');
+      }
+      if (!this.hasAttribute('text')) {
+        this.setAttribute('text', '');
+      } else {
+        if (this.hasAttribute('text-color')) {
+          this.heroText.style.color = this.getAttribute('text-color');
+        }
+      }
+      if (this.hasAttribute('has-vignette')) {
+        this.heroImgContainer.classList.add('vignette');
+      }
+      if (this.hasAttribute('cta-text') || this.hasAttribute('cta-icon')) {
+        // apply cta-link
+        let ctaLink = this.getAttribute('cta-link');
+        this.heroCtaButton.href = ctaLink ? ctaLink : '#/';
+
+        if (this.hasAttribute('cta-text')) {
+          // apply cta-text
+          this.heroCtaText.textContent = this.getAttribute('cta-text');
+          if (!this.hasAttribute('cta-icon')) {
+            // hide cta-icon if no icon present
+            this.heroCtaIconContainer.classList.add('is-hidden');
+          }
+        }
+      }
+      if (this.hasAttribute('cta-icon')) {
+        this.heroCtaIcon.src = this.getAttribute('cta-icon');
+        if (!this.hasAttribute('cta-text')) {
+          // hide cta-text if no text present
+          this.heroCtaText.classList.add('is-hidden');
+        }
+      } else {
+        this.heroCta.classList.add('is-hidden');
+      }
+
+      // apply attributes
+      this.heroImg.src = this.getAttribute('img-src');
+      this.heroText.textContent = this.getAttribute('text');
+    }
+
+    // disconnectedCallback() {}
+
+  }
+
+  window.customElements.define('n-hero', Hero);
+}

@@ -1,0 +1,119 @@
+<script>
+  (() => {
+    const customElements = ['button-cta-wrapped'];
+    helpers.customElementsImport(customElements);
+  })();
+</script>
+
+<div class="container">
+  <div class="pt-8 section">
+
+    <h2 class="mb-8 title has-text-centered"
+        x-text="$store.globals.companyName"></h2>
+    <h2 class="mb-6 subtitle has-text-centered">
+      Contact Us
+    </h2>
+
+    <div class="has-text-centered">
+      <div class="mt-6 is-size-5">
+        Have a question? Need a quote?
+      </div>
+      <div class="mt-2 is-size-5">
+        Please fill out the form below, and we'll get back to you ASAP!
+      </div>
+      <div class="mt-6 is-bold">
+        Note: This is not a real company.
+      </div>
+      <div class="mt-2 is-bold">
+        This form will not go anything useful after it is submitted.
+      </div>
+    </div>
+
+    <div class="mt-8 mx-auto w-max-35rem box has-background-light">
+    <form @submit.prevent="() => {
+        alert('Visit github.com/arcanemachine to see more of my work.'); }">
+      <div class="field">
+        <label class="label">Your name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Your name">
+        </div>
+      </div>
+
+      <div class="mt-4 field" x-data="{ emailIsValid: undefined }">
+        <label class="label">Your email
+          <span class="mt-2 mb-0 has-text-centered has-text-danger"
+             x-show="emailIsValid === false"
+             x-transition.opacity.duration.500ms>
+            address is not valid!
+          </span>
+        </label>
+        <div class="control has-icons-left has-icons-right">
+          <input type="email"
+                 class="input transition-colors duration-500"
+                 x-ref="inputEmail"
+                 :class="{ 'is-danger': emailIsValid === false }"
+                 placeholder="Your email address"
+                 @keydown.debounce.500ms="
+                   () => { emailIsValid = $el.validity.valid }">
+          <span class="icon is-small is-left">
+            <img src="/img/envelope.svg" />
+          </span>
+          <span class="icon is-small is-right">
+            <img src="/img/exclamation-triangle.svg"
+                x-show="emailIsValid === false"
+                x-transition.opacity.duration.500ms />
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Subject</label>
+        <div class="control">
+          <div class="select">
+            <select>
+              <option>I have a question</option>
+              <option>I need a quote</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 field">
+        <label class="label">Message</label>
+        <div class="control">
+          <textarea class="textarea"
+                    placeholder="Enter your message"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-4 field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox">
+            <span>
+              I agree to the
+              <span class="has-text-link"
+                    title="There aren't any terms! This isn't a real company!">
+                terms and conditions
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4 field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light"
+                  onclick="window.location.hash = '#/';">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

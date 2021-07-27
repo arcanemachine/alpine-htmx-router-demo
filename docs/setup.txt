@@ -1,0 +1,6 @@
+# bulma
+
+- npm init
+- npm install -D node-sass bulma
+
+# purgeCSS

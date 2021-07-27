@@ -1,0 +1,84 @@
+<nav id="navbar-main"
+     class="navbar is-fixed w-100 outline-none has-background-primary
+            transition-colors duration-500"
+     tabindex="-1"
+     role="navigation"
+     x-data="navbarComponent()"
+     x-show="navbarShow"
+     @keydown.escape="navbarClearAll">
+
+  <div id="navbar-brand"
+       class="navbar-brand has-text-light z-5">
+    <a class="ml-2 navbar-item brand-text has-text-light is-size-4"
+       :href="$store.router.urlBuildHashed('home')"
+       x-text="$store.globals.companyName"></a>
+    <button data-cy="navbar-burger"
+            class="px-5 button-unstyled navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarMain"
+            @click="navbarIsActive = !navbarIsActive">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <script>
+    // make navbar transparent when scrolling by adding alpha to bg color
+    const navbarBackgroundColorDefault =
+      getComputedStyle(document.querySelector('#navbar-main')).backgroundColor;
+
+    window.addEventListener('scroll', () => {
+      let navbarMain = document.querySelector('#navbar-main');
+      if (window.scrollY > "100") {
+        navbarMain.classList.remove('has-background-primary');
+        let transparentBackgroundColor =
+            navbarBackgroundColorDefault.slice(0, -1) + ', 0.7)'
+        navbarMain.style.backgroundColor = transparentBackgroundColor;
+      } else {
+        navbarMain.classList.add('has-background-primary');
+        navbarMain.style.backgroundColor = '';
+      }
+    });
+  </script>
+
+  <!-- mobile navbar -->
+  <div class="navbar-menu navbar-menu-main is-active is-hidden-desktop"
+       aria-label="navigation menu items"
+       x-show="navbarIsActive"
+       x-transition.opacity.duration.500ms
+       x-cloak>
+    <div class="navbar-end has-text-centered"
+         @click.outside="navbarIsActive = false">
+
+      <template x-for="item in navbarItems">
+        <a :href="$store.router.urlBuildHashed(item)"
+           :data-cy="`navbar-item-${item.toLowerCase().replace(' ', '-')}`"
+           class="navbar-item"
+           @click="navbarIsActive = false"
+           x-text="item">
+        </a>
+      </template>
+
+    </div>
+  </div>
+
+  <!-- desktop navbar -->
+  <div class="navbar-menu navbar-end navbar-menu-main
+              is-active is-hidden-touch"
+       x-cloak>
+    <div class="navbar-end has-text-centered"
+         @click.outside="navbarIsActive = false"></div>
+
+      <template x-for="item in navbarItems">
+        <a :href="$store.router.urlBuildHashed(item)"
+           :data-cy="`navbar-item-${item.toLowerCase().replace(' ', '-')}`"
+           class="navbar-item"
+           @click="navbarIsActive = false"
+           x-text="item">
+        </a>
+      </template>
+
+  </div>
+</nav>
