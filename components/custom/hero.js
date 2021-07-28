@@ -43,33 +43,6 @@ export function hero() {
           </div>
         </div>
 
-        <style>
-          .hero-container {
-            height: 20rem;
-            width: 100vw;
-          }
-
-          .hero-item-container {
-            position: absolute;
-            height: 20rem;
-            width: 100vw;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .hero-img {
-            height: 20rem;
-            width: 100vw;
-            object-fit: cover;
-            z-index: -100;
-          }
-
-          .hero-text { text-shadow: 0 0 4px black;}
-
-      </style>
       `;
     }
     // disconnectedCallback() {}

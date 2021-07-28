@@ -12,13 +12,6 @@ export function card() {
         cardImgSrc = '/img/card-placeholder.png';
       }
 
-      let cardImgHeight;
-      if (this.hasAttribute('img-height')) {
-        cardImgHeight = this.getAttribute('img-height');
-      } else {
-        cardImgHeight = '500px';
-      }
-
       let cardTitle;
       if (this.hasAttribute('title')) {
         cardTitle = this.getAttribute('title');
@@ -70,7 +63,9 @@ export function card() {
 
       let cardHeader = this.querySelector('.card-header');
       let cardHeaderTitle = this.querySelector('.card-header-title');
-      if (!cardHeaderTitle.innerText) {
+
+      // if card header title contains only whitespace, then remove it
+      if (!this.hasAttribute('title')) {
         cardHeader.remove();
       }
 
