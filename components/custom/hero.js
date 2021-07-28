@@ -2,7 +2,6 @@ export function hero() {
   class Hero extends HTMLElement {
     constructor() {
       super();
-      // this.heroImg = this.shadowRoot.querySelector('#hero-img');
     }
 
     connectedCallback() {

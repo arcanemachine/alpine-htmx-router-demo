@@ -47,7 +47,11 @@
     <!-- script src="https://your.domain/analytics.js" defer></script -->
 
     <style>
+      /* hero */
+      #hero-text { text-shadow: 0 0 4px black;}
+
       /* content */
+      #htmx-content-container { transition: opacity 0.25s; }
     </style>
 
   </head>
@@ -87,7 +91,6 @@
     <div id="page-container"
          x-data="indexComponent()"
          x-show="indexComponentShow"
-         @page-container-show.window="() => { indexComponentShow = true; }"
          x-cloak>
 
       <!-- navbar -->
@@ -99,9 +102,16 @@
       <!-- hero -->
       <n-hero img-src="/img/hero.jpg">
         <div slot="text">
-          <h2 id="hero-text"
-              class="mt-4 is-size-4 has-text-light"
-              x-text="$store.globals.companySlogan"></h2>
+          <h2 class="mt-4 is-size-4">
+            &nbsp; <!-- prevent button from jumping when page loaded -->
+            <span id="hero-text"
+                  class="has-text-light"
+                  x-data="{ heroShow: false }"
+                  x-show="heroShow"
+                  x-init="setTimeout(() => { heroShow = true; }, 1000)"
+                  x-transition.opacity.duration.1000ms
+                  x-text="$store.globals.companySlogan"></span>
+          </h2>
           <div id="hero-cta" class="mt-8 mx-auto w-max-max-content">
             <n-button-cta img-src="/img/telephone-fill-white.svg"
                           :href="`tel:${$store.globals.phoneUnformatted}`"
@@ -135,12 +145,6 @@
             crossorigin="anonymous"></script>
     <!--script src="/js/htmx@1.5.0.js"></script-->
     <script src="js/htmx-helpers.js"></script>
-
-    <script>
-      window.addEventListener('load', () => {
-        window.dispatchEvent(new CustomEvent('page-container-show', {}));
-      });
-    </script>
 
 
 	</body>

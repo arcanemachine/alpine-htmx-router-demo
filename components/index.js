@@ -6,6 +6,7 @@ function indexComponent() {
     indexComponentShow: false,
     hasFooter: true,
     init() {
+      this.indexComponentShow = true;
       this.$store.router.routeLoadCurrent();
     },
     introAnimationPlay() {

@@ -61,16 +61,11 @@ export function card() {
         this.render();
       }
 
-      let cardHeader = this.querySelector('.card-header');
-      let cardHeaderTitle = this.querySelector('.card-header-title');
-
       // if card header title contains only whitespace, then remove it
+      let cardHeader = this.querySelector('.card-header');
       if (!this.hasAttribute('title')) {
         cardHeader.remove();
       }
-
-      let cardImg = this.querySelector('.card-image');
-      cardImg.style.height = this.getAttribute('img-height');
     }
 
     static get observedAttributes() {
