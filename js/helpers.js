@@ -9,13 +9,13 @@ const helpers = {
   },
   convertCamelToHyphen(s) {
     return s.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + '-' + g[1].toLowerCase()
+      return g[0] + "-" + g[1].toLowerCase();
     });
   },
-  customElementPrefix: 'n-',
-  customElementImport (elementName) {
+  customElementPrefix: "n-",
+  customElementImport(elementName) {
     // if element doesn't exist, try to import it
-    if (!window.customElements.get('n-' + elementName)) {
+    if (!window.customElements.get("n-" + elementName)) {
       try {
         let elementNameCamelized = this.convertHyphenToCamel(elementName);
         eval(`nCustomElements().${elementNameCamelized}()`);
@@ -29,7 +29,7 @@ const helpers = {
   },
   webComponentImport(componentName) {
     // if element doesn't exist, try to import it
-    if (!window.customElements.get('n-' + componentName)) {
+    if (!window.customElements.get("n-" + componentName)) {
       try {
         let componentNameCamelized = this.convertHyphenToCamel(componentName);
         eval(`nWebComponents().${componentNameCamelized}()`);
@@ -40,5 +40,5 @@ const helpers = {
   },
   webComponentsImport(components) {
     components.forEach((component) => this.webComponentImport(component));
-  }
+  },
 };

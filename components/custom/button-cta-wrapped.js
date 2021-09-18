@@ -6,31 +6,31 @@ export function buttonCtaWrapped() {
 
     render() {
       let buttonImgSrc;
-      if (this.hasAttribute('img-src')) {
-        buttonImgSrc = this.getAttribute('img-src');
+      if (this.hasAttribute("img-src")) {
+        buttonImgSrc = this.getAttribute("img-src");
       } else {
-        buttonImgSrc = '/img/telephone-fill.svg';
+        buttonImgSrc = "/img/telephone-fill-white.svg";
       }
 
       let buttonGlow;
-      if (this.hasAttribute('glow')) {
-        buttonGlow = this.getAttribute('glow');
+      if (this.hasAttribute("glow")) {
+        buttonGlow = this.getAttribute("glow");
       } else {
-        buttonGlow = 'white';
+        buttonGlow = "white";
       }
 
       let buttonHref;
-      if (this.hasAttribute('href')) {
-        buttonHref = this.getAttribute('href');
+      if (this.hasAttribute("href")) {
+        buttonHref = this.getAttribute("href");
       } else {
-        buttonHref = 'tel:12345';
+        buttonHref = "tel:12345";
       }
 
       let buttonText;
-      if (this.hasAttribute('text')) {
-        buttonText = this.getAttribute('text');
+      if (this.hasAttribute("text")) {
+        buttonText = this.getAttribute("text");
       } else {
-        buttonText = 'CTA Button';
+        buttonText = "CTA Button";
       }
 
       this.innerHTML = `
@@ -47,7 +47,6 @@ export function buttonCtaWrapped() {
           </div>
         </div>
       `;
-
     }
 
     connectedCallback() {
@@ -57,18 +56,18 @@ export function buttonCtaWrapped() {
     }
 
     static get observedAttributes() {
-      return ['img-src', 'href', 'text'];
+      return ["img-src", "href", "text"];
     }
 
-    attributeChangedCallback(name, oldValue, newValue) { // eslint-disable-line
+    attributeChangedCallback(name, oldValue, newValue) {
+      // eslint-disable-line
       this.render();
     }
 
     // disconnectedCallback() {}
-
   }
 
-  window.customElements.define('n-button-cta-wrapped', ButtonCtaWrapped);
+  window.customElements.define("n-button-cta-wrapped", ButtonCtaWrapped);
 
   /*
     <n-card title="Card Header Title"
@@ -80,5 +79,4 @@ export function buttonCtaWrapped() {
       </div>
     </n-card>
   */
-  
 }
