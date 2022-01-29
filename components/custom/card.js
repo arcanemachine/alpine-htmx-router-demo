@@ -6,17 +6,17 @@ export function card() {
 
     render() {
       let cardImgSrc;
-      if (this.hasAttribute('img-src')) {
-        cardImgSrc = this.getAttribute('img-src');
+      if (this.hasAttribute("img-src")) {
+        cardImgSrc = this.getAttribute("img-src");
       } else {
-        cardImgSrc = '/img/card-placeholder.png';
+        cardImgSrc = "/img/card-placeholder.png";
       }
 
       let cardTitle;
-      if (this.hasAttribute('title')) {
-        cardTitle = this.getAttribute('title');
+      if (this.hasAttribute("title")) {
+        cardTitle = this.getAttribute("title");
       } else {
-        cardTitle = '';
+        cardTitle = "";
       }
 
       const cardTextSlot = this.querySelector('[slot="card-text"]');
@@ -53,7 +53,6 @@ export function card() {
           </div>
         </div>
       `;
-
     }
 
     connectedCallback() {
@@ -62,25 +61,25 @@ export function card() {
       }
 
       // if card header title contains only whitespace, then remove it
-      let cardHeader = this.querySelector('.card-header');
-      if (!this.hasAttribute('title')) {
+      let cardHeader = this.querySelector(".card-header");
+      if (!this.hasAttribute("title")) {
         cardHeader.remove();
       }
     }
 
     static get observedAttributes() {
-      return ['img-src', 'title'];
+      return ["img-src", "title"];
     }
 
-    attributeChangedCallback(name, oldValue, newValue) { // eslint-disable-line
+    attributeChangedCallback(name, oldValue, newValue) {
+      // eslint-disable-line
       this.render();
     }
 
     // disconnectedCallback() {}
-
   }
 
-  window.customElements.define('n-card', Card);
+  window.customElements.define("n-card", Card);
 
   /*
     <n-card title="Card Header Title"
@@ -92,5 +91,4 @@ export function card() {
       </div>
     </n-card>
   */
-  
 }
